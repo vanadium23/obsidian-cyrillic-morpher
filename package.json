@@ -1,9 +1,10 @@
 {
-	"name": "obsidian-sample-plugin",
-	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"name": "obsidian-cyrillic-morpher",
+	"version": "0.0.1",
+	"description": "This is a plugin to generate cases for cyrillic named files. Update your aliases with command.",
 	"main": "main.js",
 	"scripts": {
+		"lint": "eslint . --ext .ts && tsc --noEmit && prettier --check src/",
 		"dev": "node esbuild.config.mjs",
 		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
 		"version": "node version-bump.mjs && git add manifest.json versions.json"
@@ -18,6 +19,7 @@
 		"builtin-modules": "3.3.0",
 		"esbuild": "0.17.3",
 		"obsidian": "latest",
+		"prettier": "^2.8.8",
 		"tslib": "2.4.0",
 		"typescript": "4.7.4"
 	},

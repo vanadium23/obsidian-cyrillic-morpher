@@ -7,8 +7,8 @@ interface CyrillicAliasater {
 }
 
 function mergeAliases(
-	newAliases: string[], 
-	currentAliases: string[] | undefined, 
+	newAliases: string[],
+	currentAliases: string[] | undefined,
 	alias: string | undefined
 ): string[] {
 	const mergedAliases = newAliases;
@@ -41,7 +41,7 @@ export class CyrillicGenerator implements CyrillicAliasater {
 	async writeCyrillicCases(ctx: MarkdownFileInfo) {
 		// get current file
 		if (!ctx?.file) {
-			console.log("No file in context");
+			console.log('No file in context');
 			return;
 		}
 		const filename = ctx.file?.basename;
@@ -49,11 +49,15 @@ export class CyrillicGenerator implements CyrillicAliasater {
 		const newAliases = cases.filter((alias) => alias !== filename);
 		// update frontmatter aliases
 		await this.app.fileManager.processFrontMatter(ctx.file, (frontmatter) => {
-			const mergedAliases = mergeAliases(newAliases, frontmatter.aliases, frontmatter.alias);
-			frontmatter["aliases"] = mergedAliases;
-			if (frontmatter["alias"]) {
-				delete frontmatter["alias"];
+			const mergedAliases = mergeAliases(
+				newAliases,
+				frontmatter.aliases,
+				frontmatter.alias
+			);
+			frontmatter['aliases'] = mergedAliases;
+			if (frontmatter['alias']) {
+				delete frontmatter['alias'];
 			}
 		});
-	};
+	}
 }
