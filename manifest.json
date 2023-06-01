@@ -1,7 +1,7 @@
 {
-	"id": "obsidian-cyrillic-morpher",
+	"id": "cyrillic-morpher",
 	"name": "Cyrillic Morpher",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"minAppVersion": "0.15.0",
 	"description": "This is a plugin to generate cases for cyrillic named files. Update your aliases with command.",
 	"author": "vanadium23",

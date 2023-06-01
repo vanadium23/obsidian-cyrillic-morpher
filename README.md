@@ -21,7 +21,7 @@ The plugin is not yet available in the plugin library, will be soon. Stay tunned
 ### Manual
 
 1.  Go to the [releases](https://github.com/vanadium23/obsidian-cyrillic-morpher/releases) and download `main.js`, `manifest.json`, and `styles.css` of the latest version.
-2.  Put the files in `YourObsidianVault/.obsidian/plugins/obsidian-cyrillic-morpher/`
+2.  Put the files in `YourObsidianVault/.obsidian/plugins/cyrillic-morpher/`
 3.  Reload the plugins in Obsidian settings or restart the program.
 4.  The plugin can now be enabled in the plugins menu.
 
