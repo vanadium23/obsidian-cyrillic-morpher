@@ -1,7 +1,7 @@
 import { CyrillicMorperSettings } from './settings';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const Morpher = require('morpher-ws3-client');
+const ws3Morpher = require('morpher-ws3-client');
 
 interface Morpher {
 	generateCases(string: string): Promise<string[]>;
@@ -12,12 +12,12 @@ export class CyrillicMorpher implements Morpher {
 	morpher: any;
 
 	constructor(settings: CyrillicMorperSettings) {
-		this.morpher = new Morpher({
+		this.morpher = new ws3Morpher({
 			token: settings.morpherApiKey,
 		});
 	}
 
-	async generateCases(string: string): Promise<string[]> {
+	async generateCases(string: string, plural = false): Promise<string[]> {
 		const result = await this.morpher.russian.declension(string);
 		// TODO: move to settings
 		const cases = [
@@ -27,9 +27,16 @@ export class CyrillicMorpher implements Morpher {
 			'instrumental',
 			'prepositional',
 		];
-		const aliases = cases.map((caseName) => {
+		let aliases = cases.map((caseName) => {
 			return result[caseName];
 		});
+		if (plural) {
+			aliases = aliases.concat(
+				cases.map((caseName) => {
+					return result['plural'][caseName];
+				})
+			);
+		}
 		return aliases;
 	}
 }

@@ -27,6 +27,17 @@ export default class ObsidianCyrillicMorper extends Plugin {
 				generator.writeCyrillicCases(ctx);
 			},
 		});
+		// This adds a simple command that can be triggered anywhere
+		this.addCommand({
+			id: 'cirillic-morper-generate-aliases-filename-plural',
+			name: 'Generate aliases based on filename (with plural)',
+			editorCallback: (
+				editor: Editor,
+				ctx: MarkdownView | MarkdownFileInfo
+			) => {
+				generator.writeCyrillicCases(ctx, true);
+			},
+		});
 
 		// This adds a settings tab so the user can configure various aspects of the plugin
 		this.addSettingTab(new CyrillicMorperSettingTab(this.app, this));

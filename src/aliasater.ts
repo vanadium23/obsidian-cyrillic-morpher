@@ -38,14 +38,14 @@ export class CyrillicGenerator implements CyrillicAliasater {
 		this.morpher = new CyrillicMorpher(settings);
 	}
 
-	async writeCyrillicCases(ctx: MarkdownFileInfo) {
+	async writeCyrillicCases(ctx: MarkdownFileInfo, plural = false) {
 		// get current file
 		if (!ctx?.file) {
 			console.log('No file in context');
 			return;
 		}
 		const filename = ctx.file?.basename;
-		const cases = await this.morpher.generateCases(filename);
+		const cases = await this.morpher.generateCases(filename, plural);
 		const newAliases = cases.filter((alias) => alias !== filename);
 		// update frontmatter aliases
 		await this.app.fileManager.processFrontMatter(ctx.file, (frontmatter) => {
